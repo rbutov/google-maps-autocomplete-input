@@ -1,6 +1,6 @@
 {
   "name": "google-maps-autocomplete-input",
-  "version": "0.0.1-development",
+  "version": "0.0.2-development",
   "description": "_autocomplete input with dropdown for google maps JS API",
   "main": "src/index.js",
   "scripts": {
