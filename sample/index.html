@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <link href="./style.css" rel="stylesheet" />
+        <script src="../dist/bundle.js"></script>
+    </head>
+    <body>
+      <div class="autocomplete" style="width:300px;">
+        <input id="autocompleteId" type="text">
+        <input id="autocomplete" type="text" name="myCountry" placeholder="Country">
+      </div>
+      <script>
+          function initMap() {
+            const sessionToken = new google.maps.places.AutocompleteSessionToken();
+            const config = {
+              countryCode: 'by',
+              autocompleteType: [],
+              onlyName: false,
+              normalizeLanguage: true
+            }
+            const afterSelected = place_id => {
+              document.getElementById('autocompleteId').value = place_id;
+            }
+            googleMapsAutocompleteInput({
+                input: document.getElementById('autocomplete'), 
+                sessionToken, 
+                config, 
+                afterSelected
+            });
+          }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<API_TOKEN>&libraries=places&language=ru&callback=initMap"
+        async defer></script>
+    </body>
+</html>
