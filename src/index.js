@@ -1,8 +1,8 @@
 import './style.css';
 
 const defaultConfig = {
-  countryCode: 'by',
-  autocompleteType: ['(cities)'],
+  countryCode: '',
+  autocompleteType: [],
   onlyName: false,
   normalizeLanguage: false
 }

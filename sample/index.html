@@ -12,10 +12,10 @@
           function initMap() {
             const sessionToken = new google.maps.places.AutocompleteSessionToken();
             const config = {
-              countryCode: 'by',
+              countryCode: '',
               autocompleteType: [],
               onlyName: false,
-              normalizeLanguage: true
+              normalizeLanguage: false
             }
             const afterSelected = place_id => {
               document.getElementById('autocompleteId').value = place_id;
@@ -28,7 +28,7 @@
             });
           }
       </script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=<API_TOKEN>&libraries=places&language=ru&callback=initMap"
+      <script src="https://maps.googleapis.com/maps/api/js?key=<API_TOKEN>&libraries=places&callback=initMap"
         async defer></script>
     </body>
 </html>

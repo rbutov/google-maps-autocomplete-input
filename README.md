@@ -21,7 +21,7 @@ replace <API_TOKEN> with your code from google maps console:
       // _config for the module
       const config = {
         // _specify country for autocomplete
-        countryCode: 'by',
+        countryCode: '',
         // _type of autocomplition: (cities), (regions): https://developers.google.com/maps/documentation/javascript/places-autocomplete
         autocompleteType: [],
         // _use only place name
