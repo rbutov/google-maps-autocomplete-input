@@ -27,6 +27,6 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: isPROD ? `${moduleName}-${pkg.version}.min.js` : `${moduleName}.js`
+    filename: isPROD ? `${moduleName}.min.js` : `${moduleName}.js`
   },
 };
