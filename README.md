@@ -1,49 +1,43 @@
-## Autocomplete input with dropdwon for google maps JS API 
+## Autocomplete input with dropdwon for google maps JS API  &middot; [![npm version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/google-maps-autocomplete-input)
 
-### Add google maps JS code to the html:
-replace <API_TOKEN> with your code from google maps console:
+### Installation
+#### Node
+```bash
+npm i -s google-maps-autocomplete-input 
+```
+#### Script tag
 ```html
-<script src="https://maps.googleapis.com/maps/api/js?key=<API_TOKEN>&libraries=places&language=ru&callback=initMap" async defer></script>
+<script src="./google-maps-autocomplete-input-0.0.3-development.min.js"></script>
 ```
 
-### Usage as js library:
-1) Include js library file:
-```html
-<script src="../dist/google-maps-autocomplete-input.js"></script>
-```
-2) Add code to you html file:
+### Usage
 ```js
-<script>
-    function initMap() {
-      // _session token to share session during all request to google maps api
-      // _read more: https://developers.google.com/places/web-service/session-tokens
-      const sessionToken = new google.maps.places.AutocompleteSessionToken();
-      // _config for the module
-      const config = {
-        // _specify country for autocomplete
-        countryCode: '',
-        // _type of autocomplition: (cities), (regions): https://developers.google.com/maps/documentation/javascript/places-autocomplete
-        autocompleteType: [],
-        // _use only place name
-        onlyName: false,
-        // _set intput city input to filter address search by city
-        cityInput: null
-      }
-      // _after dropdown selected callback
-      const afterSelected = (place_id, place_name) => {
-        console.log(place_id, place_name);
-      }
-      // _init module
-      googleMapsAutocompleteInput({
-          input: document.getElementById('autocomplete'), 
-          sessionToken, 
-          config, 
-          afterSelected
-      });
-    }
-</script>
+  import googleMapsAutocompleteInput from 'google-maps-autocomplete-input';
+
+  // _init module, you need API_TOKEN from google console
+  const gmaInput = new googleMapsAutocompleteInput('<API_TOKEN>');
+  const cityConfig = {
+    // _specify country for autocomplete
+    countryCode: 'us',
+    // _type of autocomplition: (cities), (regions): https://developers.google.com/maps/documentation/javascript/places-autocomplete
+    autocompleteType: ['(cities)'],
+    // _use only place name
+    onlyName: true,
+    // _inputs list with additional filter places like city, state, country
+    filterInputs: []
+  } 
+  // _after dropdown selected callback
+  const afterCitySelected = place_id => {
+    console.log(place_id);
+  }
+  const cityInput = document.getElementById('dcity');
+  // bind input with autocompletetion to input
+  gmaInput.bindInput({
+      input: cityInput, 
+      config: cityConfig,
+      afterSelected: afterCitySelected
+  });
 ```
 
-### Usage with npm:
-
-npm i -s google-maps-autocomplete-input
+### License
+Autocomplete input with dropdwon is MIT licensed.
