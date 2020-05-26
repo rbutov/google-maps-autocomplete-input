@@ -1,8 +1,8 @@
 {
   "name": "google-maps-autocomplete-input",
-  "version": "0.0.4-development",
+  "version": "0.0.5-development",
   "description": "_autocomplete input with dropdown for google maps JS API",
-  "main": "src/index.js",
+  "main": "dist/google-maps-autocomplete-input.js",
   "scripts": {
     "build": "PROD_ENV=1 webpack",
     "build-dev": "PROD_ENV=0 webpack"
@@ -12,6 +12,15 @@
     "url": "https://github.com/rgbutov/google-maps-autocomplete-input"
   },
   "keywords": [
+    "Googe Maps",
+    "google maps",
+    "google-maps",
+    "@google-maps",
+    "google-maps-api",
+    "@google-maps-api",
+    "MapsAPI",
+    "GoogleMap",
+    "input dropdawn",
     "npm",
     "package"
   ],
