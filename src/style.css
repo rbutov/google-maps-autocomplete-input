@@ -1,7 +1,3 @@
-.gmaps-autocomplete {
-  position: relative;
-  display: inline-block;
-}
 .gmaps-autocomplete-items {
   position: absolute;
   border: 1px solid #d4d4d4;

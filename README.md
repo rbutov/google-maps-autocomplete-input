@@ -7,13 +7,11 @@ npm i -s google-maps-autocomplete-input
 ```
 #### Script tag
 ```html
-<script src="./google-maps-autocomplete-input-0.0.3-development.min.js"></script>
+<script src="./node_modules/google-maps-autocomplete-input/google-maps-autocomplete-input.min.js"></script>
 ```
 
 ### Usage
 ```js
-  import googleMapsAutocompleteInput from 'google-maps-autocomplete-input';
-
   // _init module, you need API_TOKEN from google console
   const gmaInput = new googleMapsAutocompleteInput('<API_TOKEN>');
   const cityConfig = {
@@ -30,6 +28,7 @@ npm i -s google-maps-autocomplete-input
   const afterCitySelected = place_id => {
     console.log(place_id);
   }
+  
   const cityInput = document.getElementById('dcity');
   // bind input with autocompletetion to input
   gmaInput.bindInput({

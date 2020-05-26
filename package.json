@@ -1,6 +1,6 @@
 {
   "name": "google-maps-autocomplete-input",
-  "version": "0.0.5-development",
+  "version": "0.1.0",
   "description": "_autocomplete input with dropdown for google maps JS API",
   "main": "dist/google-maps-autocomplete-input.js",
   "scripts": {
@@ -12,6 +12,7 @@
     "url": "https://github.com/rgbutov/google-maps-autocomplete-input"
   },
   "keywords": [
+    "front-end",
     "Googe Maps",
     "google maps",
     "google-maps",

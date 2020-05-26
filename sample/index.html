@@ -5,30 +5,28 @@
     </head>
     <body>
       <div class="autocomplete" style="width:300px;">
-        <input id="autocompleteId" type="text">
         <input id="autocomplete" type="text" name="myCountry" placeholder="Country">
       </div>
       <script>
-          function initMap() {
-            const sessionToken = new google.maps.places.AutocompleteSessionToken();
-            const config = {
-              countryCode: '',
-              autocompleteType: [],
-              onlyName: false,
-              normalizeLanguage: false
-            }
-            const afterSelected = place_id => {
-              document.getElementById('autocompleteId').value = place_id;
-            }
-            googleMapsAutocompleteInput({
-                input: document.getElementById('autocomplete'), 
-                sessionToken, 
-                config, 
-                afterSelected
-            });
-          }
+        const gmaInput = new googleMapsAutocompleteInput("<API_TOKEN");
+
+        const cityInput = document.getElementById('autocomplete');
+
+        const cityConfig = {
+          countryCode: 'us',
+          autocompleteType: ['(cities)'],
+          onlyName: false
+        }
+
+        const afterCitySelected = place_id => {
+          console.log(place_id);
+        }
+
+        gmaInput.bindInput({
+          input: cityInput,
+          config: cityConfig,
+          afterSelected: afterCitySelected
+        });
       </script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=<API_TOKEN>&libraries=places&callback=initMap"
-        async defer></script>
     </body>
 </html>
