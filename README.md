@@ -26,12 +26,12 @@ replace <API_TOKEN> with your code from google maps console:
         autocompleteType: [],
         // _use only place name
         onlyName: false,
-        // _set intput value using your language, not input laguage
-        normalizeLanguage: false
+        // _set intput city input to filter address search by city
+        cityInput: null
       }
       // _after dropdown selected callback
-      const afterSelected = place_id => {
-        document.getElementById('autocompleteId').value = place_id;
+      const afterSelected = (place_id, place_name) => {
+        console.log(place_id, place_name);
       }
       // _init module
       googleMapsAutocompleteInput({

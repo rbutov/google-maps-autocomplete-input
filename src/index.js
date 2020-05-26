@@ -4,31 +4,52 @@ const defaultConfig = {
   countryCode: '',
   autocompleteType: [],
   onlyName: false,
-  normalizeLanguage: false
+  cityInput: null
 }
 
-const googleMapsAutocompleteInput = ({input, sessionToken=null, config={...defaultConfig}, afterSelected=null}) => {
-  const autocompleteService = new google.maps.places.AutocompleteService();
-  const placesService = new google.maps.places.PlacesService(document.createElement('div'));
+const googleMapsAutocompleteInput = ({
+  input=null, 
+  sessionToken=null, 
+  config={}, 
+  afterSelected=null
+}) => {
+  if (!input) {
+    return false;
+  }
+  
+  if (!google.maps) {
+    return false;
+  }
+
+  config = {...defaultConfig, ...config}
 
   let currentFocus;
+  const autocompleteService = new google.maps.places.AutocompleteService();
   
   input.addEventListener('input', function(e) {
-    const inputValue = this.value;
+    let cityName = null;
+    if (config.cityInput) {
+      cityName = config.cityInput.value; 
+    }
+    let inputValue = this.value;
 
-    closeAllLists();
+    if (cityName) {
+      inputValue = `${cityName}, ${inputValue}`;
+    }
     if (!inputValue) { 
       return false;
     }
-    
+
+    closeAllLists();
     currentFocus = -1;
 
     const dropdown = document.createElement('div');
-    dropdown.setAttribute('id', `${this.id}autocomplete-list`);
-    dropdown.setAttribute('class', 'autocomplete-items');
+    dropdown.setAttribute('id', `${this.id}-autocomplete-list`);
+    dropdown.setAttribute('class', 'gmaps-autocomplete-items');
     this.parentNode.appendChild(dropdown);
 
     const autocompleteCallback = (predictions, status) => {
+      console.log(predictions);
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (let i = 0; i < predictions.length; i++) {
           const place_id = predictions[i].place_id;
@@ -40,29 +61,18 @@ const googleMapsAutocompleteInput = ({input, sessionToken=null, config={...defau
           const dropdownElement = document.createElement('div');
           dropdownElement.innerHTML = `<strong>${place_name.substr(0, inputValue.length)}</strong>`;
           dropdownElement.innerHTML += place_name.substr(inputValue.length);
-          dropdownElement.setAttribute('place_name', place_name);
-          dropdownElement.setAttribute('place_id', place_id);
+          dropdownElement.setAttribute('place-name', place_name);
+          dropdownElement.setAttribute('place-id', place_id);
           dropdownElement.addEventListener('click', function(e) {
-            const place_id = this.getAttribute('place_id');
+            const place_id = this.getAttribute('place-id');
             if (typeof afterSelected === 'function') {
-              afterSelected(place_id);
-            }
-
-            if (config.normalizeLanguage) {
-              const detailsCallback = (predictions, status) => {
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                  if (config.onlyName) { 
-                    input.value = predictions.name;
-                  } else {
-                    input.value = predictions.formatted_address;
-                  }
-                }
+              try {
+                afterSelected(place_id, place_name);
+              } catch (er) {
+                console.error(er);
               }
-              getDetails(place_id, detailsCallback);
-            } else {
-              input.value = place_name; 
             }
-            
+            input.value = place_name; 
             closeAllLists();
           });
           dropdown.appendChild(dropdownElement);
@@ -73,7 +83,7 @@ const googleMapsAutocompleteInput = ({input, sessionToken=null, config={...defau
   });
 
   input.addEventListener('keydown', function(e) {
-    let dropdownElements = document.getElementById(`${this.id}autocomplete-list`);
+    let dropdownElements = document.getElementById(`${this.id}-autocomplete-list`);
 
     if (dropdownElements) {
       dropdownElements = dropdownElements.getElementsByTagName('div');
@@ -111,12 +121,12 @@ const googleMapsAutocompleteInput = ({input, sessionToken=null, config={...defau
 
   const removeActive = dropdownElements => {
     for (let i = 0; i < elements.length; i++) {
-      dropdownElements[i].classList.remove('autocomplete-active');
+      dropdownElements[i].classList.remove('gmaps-autocomplete-active');
     }
   }
 
   const closeAllLists = element => {
-    const dropdownElements = document.getElementsByClassName('autocomplete-items');
+    const dropdownElements = document.getElementsByClassName('gmaps-autocomplete-items');
     for (let i = 0; i < dropdownElements.length; i++) {
       if (element != dropdownElements[i] && element != input) {
         dropdownElements[i].parentNode.removeChild(dropdownElements[i]);
@@ -125,33 +135,22 @@ const googleMapsAutocompleteInput = ({input, sessionToken=null, config={...defau
   }
 
   const getAutocomplete = (input, callback) => {
-    let request = {
+    const request = {
         input: input,
         types: config.autocompleteType,
         componentRestrictions: {
           country: config.countryCode
         },
         sessionToken: sessionToken
-    };
-    autocompleteService.getPlacePredictions(request, callback);
-  }
-
-  const getDetails = (placeId, callback) => {
-    let request = {
-        placeId: placeId,
-        sessionToken: sessionToken
-    };
-    if (config.onlyName) { 
-      request.fields = ['name']  
-    } else {
-      request.fields = ['formatted_address']
     }
-    placesService.getDetails(request, callback);
+
+    console.log(request);
+    autocompleteService.getPlacePredictions(request, callback);
   }
 
   document.addEventListener('click', function(e) {
     closeAllLists(e.target);
-  }); 
+  });
 }
 
 if (typeof module !== 'undefined' || !module.exports) {

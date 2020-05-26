@@ -1,7 +1,8 @@
 const path = require('path');
+const PROD = JSON.parse(process.env.PROD_ENV || '0') === 1;
 
 module.exports = {
-  mode: 'production',
+  mode: PROD ? 'production' : 'development',
   module: {
     rules: [
       {
@@ -18,9 +19,12 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js']
   },
+  optimization: {
+    minimize: PROD
+  },
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'google-maps-autocomplete-input.js'
+    filename: PROD ? 'google-maps-autocomplete-input.min.js' : 'google-maps-autocomplete-input.js'
   },
 };
