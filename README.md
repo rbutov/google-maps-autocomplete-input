@@ -1,5 +1,8 @@
 ## Autocomplete input with dropdwon for google maps JS API  &middot; [![npm version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/google-maps-autocomplete-input)
 
+### Sample
+![sample](https://raw.githubusercontent.com/rgbutov/google-maps-autocomplete-input/master/sample/sample.png)
+
 ### Installation
 #### Node
 ```bash

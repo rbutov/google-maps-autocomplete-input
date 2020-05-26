@@ -8,13 +8,13 @@
         <input id="autocomplete" type="text" name="myCountry" placeholder="Country">
       </div>
       <script>
-        const gmaInput = new googleMapsAutocompleteInput("<API_TOKEN");
+        const gmaInput = new googleMapsAutocompleteInput("<API_TOKEN>");
 
         const cityInput = document.getElementById('autocomplete');
 
         const cityConfig = {
           countryCode: 'us',
-          autocompleteType: ['(cities)'],
+          autocompleteType: [],
           onlyName: false
         }
 
