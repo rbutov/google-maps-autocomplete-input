@@ -1,6 +1,6 @@
-## Autocomplete input with dropdwon for google maps JS API  &middot; [![npm version](https://img.shields.io/npm/v/google-maps-autocomplete-input.svg?style=flat)](https://www.npmjs.com/package/google-maps-autocomplete-input)
+## Autocomplete input with dropdwon for google maps JS API  &middot; [![npm version](https://img.shields.io/npm/v/google-maps-autocomplete-input.svg?style=flat)](https://www.npmjs.com/package/google-maps-autocomplete-input) [![Bundlephobia](https://badgen.net/bundlephobia/minzip/google-maps-autocomplete-input)](https://bundlephobia.com/result?p=google-maps-autocomplete-input)
 
-**Browser document object is requered.**
+### Browser document object is requered.
 
 ### Sample
 <img src="https://raw.githubusercontent.com/rgbutov/google-maps-autocomplete-input/master/sample/sample.png" height="200">
@@ -12,7 +12,7 @@ npm i -s google-maps-autocomplete-input
 ```
 #### Script tag
 ```html
-<script src="./node_modules/google-maps-autocomplete-input/google-maps-autocomplete-input.min.js"></script>
+<script src="/path/to/google-maps-autocomplete-input.min.js"></script>
 ```
 
 ### Usage
