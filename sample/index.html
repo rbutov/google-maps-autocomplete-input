@@ -10,22 +10,22 @@
       <script>
         const gmaInput = new googleMapsAutocompleteInput("<API_TOKEN>");
 
-        const cityInput = document.getElementById('autocomplete');
+        const placeInput = document.getElementById('autocomplete');
 
-        const cityConfig = {
+        const placeConfig = {
           countryCode: 'us',
           autocompleteType: [],
           onlyName: false
         }
 
-        const afterCitySelected = place_id => {
-          console.log(place_id);
+        const afterPlaceSelected = (place_id, place_name) => {
+          console.log(place_id, place_name);
         }
 
         gmaInput.bindInput({
-          input: cityInput,
-          config: cityConfig,
-          afterSelected: afterCitySelected
+          input: placeInput,
+          config: placeConfig,
+          afterSelected: afterPlaceSelected
         });
       </script>
     </body>

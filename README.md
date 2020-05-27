@@ -17,7 +17,7 @@ npm i -s google-maps-autocomplete-input
 ```js
   // _init module, you need API_TOKEN from google console
   const gmaInput = new googleMapsAutocompleteInput('<API_TOKEN>');
-  const cityConfig = {
+  const placeConfig = {
     // _specify country for autocomplete
     countryCode: 'us',
     // _type of autocomplition: (cities), (regions): https://developers.google.com/maps/documentation/javascript/places-autocomplete
@@ -28,16 +28,16 @@ npm i -s google-maps-autocomplete-input
     filterInputs: []
   } 
   // _after dropdown selected callback
-  const afterCitySelected = place_id => {
-    console.log(place_id);
+  const afterPlaceSelected = (place_id, place_name) => {
+    console.log(place_id, place_name);
   }
   
-  const cityInput = document.getElementById('dcity');
+  const placeInput = document.getElementById('dcity');
   // bind input with autocompletetion to input
   gmaInput.bindInput({
-      input: cityInput, 
-      config: cityConfig,
-      afterSelected: afterCitySelected
+      input: placeInput, 
+      config: placeConfig,
+      afterSelected: afterPlaceSelected
   });
 ```
 
