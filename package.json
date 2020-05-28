@@ -1,11 +1,19 @@
 {
   "name": "google-maps-autocomplete-input",
-  "version": "0.1.6",
-  "description": "_autocomplete input with dropdown for google maps JS API",
+  "version": "0.2.0",
+  "description": "_custom UI for Google Maps Places Autocomplete",
   "main": "dist/google-maps-autocomplete-input.js",
   "scripts": {
-    "build": "PROD_ENV=1 webpack",
-    "build-dev": "PROD_ENV=0 webpack"
+    "commit": "git-cz",
+    "test": "jest",
+    "test:update": "jest --updateSnapshot",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js --progress --hide-modules",
+    "prettier": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format-code": "npm run prettier & npm run lint:fix"
   },
   "repository": {
     "type": "git",
@@ -30,24 +38,26 @@
     "dist",
     "README.md"
   ],
-  "author": "Ruslan Butov",
+  "author": "Ruslan Butov <rgbutov@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rgbutov/google-maps-autocomplete-input/issues"
   },
   "homepage": "https://github.com/rgbutov/google-maps-autocomplete-input#readme",
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/preset-env": "^7.9.6",
-    "babel-loader": "^8.1.0",
-    "babel-preset-es2015": "^6.24.1",
+    "@typescript-eslint/eslint-plugin": "^3.0.2",
+    "@typescript-eslint/parser": "^3.0.2",
+    "cross-env": "^7.0.2",
     "css-loader": "^3.5.3",
-    "express": "^4.17.1",
+    "eslint": "^7.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "prettier": "^2.0.5",
     "style-loader": "^1.2.1",
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.3",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
-  },
-  "presets": [
-    "@babel/preset-env"
-  ]
+    "webpack-cli": "^3.3.11",
+    "jest": "^26.0.1"
+  }
 }

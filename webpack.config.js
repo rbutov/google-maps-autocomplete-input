@@ -1,32 +1,44 @@
-const path = require('path');
-const isPROD = JSON.parse(process.env.PROD_ENV || '0') === 1;
-const pkg = require('./package.json');
-const moduleName = `google-maps-autocomplete-input`;
+var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
-  mode: isPROD ? 'production' : 'development',
+  entry: './src/index.ts',
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/dist/',
+    filename: 'google-maps-autocomplete-input.js',
+    library: 'google-maps-autocomplete-input',
+    libraryTarget: 'umd',
+  },
   module: {
     rules: [
       {
-        test: /\.(js)$/,
+        test: /\.tsx?$/,
+        use: 'ts-loader',
         exclude: /node_modules/,
-        use: ['babel-loader']
       },
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
-      }
-    ]
+      },
+    ],
   },
   resolve: {
-    extensions: ['*', '.js']
+    extensions: ['.tsx', '.ts', '.js'],
   },
-  optimization: {
-    minimize: isPROD
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"',
+      },
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+    }),
+  ],
+  performance: {
+    hints: false,
   },
-  entry: './src/index.js',
-  output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: isPROD ? `${moduleName}.min.js` : `${moduleName}.js`
-  },
+  devtool: '#source-map',
+  mode: 'production',
 };

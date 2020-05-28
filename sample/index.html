@@ -1,28 +1,26 @@
 <html>
     <head>
+        <title>Google Maps Autocomplete Input</title>
         <link href="./style.css" rel="stylesheet" />
         <script src="../dist/google-maps-autocomplete-input.js"></script>
     </head>
     <body>
       <div class="autocomplete" style="width:300px;">
-        <input id="autocomplete" type="text" name="myCountry" placeholder="Country">
+        <input id="autocomplete" type="text" placeholder="Enter place...">
       </div>
       <script>
-        const gmaInput = new googleMapsAutocompleteInput("<API_TOKEN>");
-
+        const paInput = new placesAutocomplete("<API_TOKEN>");
         const placeInput = document.getElementById('autocomplete');
-
         const placeConfig = {
           countryCode: 'us',
           autocompleteType: [],
           onlyName: false
         }
-
-        const afterPlaceSelected = (place_id, place_name) => {
-          console.log(place_id, place_name);
+        /* place: {id, name, description, structured_formatting, terms} */
+        const afterPlaceSelected = place => {
+          console.log(place);
         }
-
-        gmaInput.bindInput({
+        paInput.bindInput({
           input: placeInput,
           config: placeConfig,
           afterSelected: afterPlaceSelected
