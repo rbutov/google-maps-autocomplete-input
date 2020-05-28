@@ -1,3 +1,9 @@
+# DEPRECATED AND MOVE TO: [NPM](https://www.npmjs.com/package/places-autocomplete) [GIT](https://github.com/rgbutov/places-autocomplete)
+
+[https://www.npmjs.com/package/places-autocomplete](https://www.npmjs.com/package/places-autocomplete)
+[https://github.com/rgbutov/places-autocomplete](https://github.com/rgbutov/places-autocomplete)
+
+
 ## Autocomplete input with dropdwon for google maps JS API  &middot; [![npm version](https://img.shields.io/npm/v/google-maps-autocomplete-input.svg?style=flat)](https://www.npmjs.com/package/google-maps-autocomplete-input) [![Bundlephobia](https://badgen.net/bundlephobia/minzip/google-maps-autocomplete-input)](https://bundlephobia.com/result?p=google-maps-autocomplete-input)
 
 ### Browser document object is requered.
