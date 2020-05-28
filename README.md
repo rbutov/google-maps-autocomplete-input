@@ -1,6 +1,7 @@
-# DEPRECATED AND MOVE TO: [NPM](https://www.npmjs.com/package/places-autocomplete) [GIT](https://github.com/rgbutov/places-autocomplete)
+# DEPRECATED AND MOVED TO: [NPM](https://www.npmjs.com/package/places-autocomplete) [GIT](https://github.com/rgbutov/places-autocomplete)
 
 [https://www.npmjs.com/package/places-autocomplete](https://www.npmjs.com/package/places-autocomplete)
+
 [https://github.com/rgbutov/places-autocomplete](https://github.com/rgbutov/places-autocomplete)
 
 
