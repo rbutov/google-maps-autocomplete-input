@@ -47,7 +47,7 @@ const ifGmapsLibraryExist = () => {
 
 const initAutocompleteService = async () => {
   let initInterval: number = null;
-  return new Promise(resolve => {
+  return new Promise<void>(resolve => {
     const init = () => {
       if (ifGmapsLibraryExist()) {
         defaultSessionToken = new google.maps.places.AutocompleteSessionToken();
@@ -178,9 +178,8 @@ function placesAutocomplete(
       );
 
       if (dropdownMenu) {
-        const dropdownElements: HTMLCollectionOf<HTMLDivElement> = dropdownMenu.getElementsByTagName(
-          'div'
-        );
+        const dropdownElements: HTMLCollectionOf<HTMLDivElement> =
+          dropdownMenu.getElementsByTagName('div');
 
         if (e.keyCode == 40) {
           currentFocus++;
